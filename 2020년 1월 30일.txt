@@ -1,0 +1,52 @@
+LabelImg 툴이 있다.
+http://tzutalin.github.io/labelImg/
+
+ppt참조
+
+1.8버전을 다운 받고,
+
+1.이미지 라벨링을 한다. 그리고, 폴더를 만들어, 라벨링한것을 저장한다.
+2.예제폴더인 snowman 폴더에 text파일의 train데이터를 수정한다.
+3.복붙해서, 이름만, test로 바꾼다.
+4.classes.names 수정
+5.darknet.data수정
+6.darknet-yolov3.cfg를 적절히 수정
+7.darknet_no_gpu detector train darknet.data darknet-yolov3.cfg darknet53.conv.74 를 해당 경로로 이동하여, 커맨드창에 입력
+
+8.실행시, putty창에서 unzip snowman.zip -d 디렉토리명을 적는다.
+
+
+
+
+aws 서버에서 yolo구동하기
+1.putty로 jupyter 서버에 접속한다.
+2.압축파일 snowman을 업로드하고, unzip snowman.zip -d snowman(디렉토리명)에 압축을 풀자.
+3.들어가서, 파일 경로를 /home/lab10/이미지경로/이미지파일명부분을 적절하게 수정해준다.
+(test, train)
+4.putty창에 weights 폴더를 만들어준다.
+5.putty 창에 cd ../ 입력한 후 cd darknet을 입력한다.
+6.putty창에 /darknet detector train ~/snowman/darknet.data ~/snowman/darknet-yolov3.cfg ~/snowman/darknet53.conv.74 > ~/snowman/can.log
+를 입력한다.
+
+
+
+얼굴인식
+
+imultis
+dlib 3.7X(Linux) -> 3.6O: 얼굴인식 표준 패키지(버전을 잘탄다.) 3.7에서 사용이 안된다. 3.6에서만 동작 가능
+
+face_recognition
+
+conda create -n py36 python=3.6 anaconda
+실행 : conda activate py36
+pip install opencv-python
+pip install imutils
+pip install dlib
+
+https://pypi.org/simple/dlib/로 가기
+#cp : 파이썬 버전
+dlib-19.8.1-cp36-cp36m-win amd64.whl 다운받기
+다운 받은 경로로 가서 pip install dlib-19.8.1-cp36-cp36m-win_amd64
+
+pip install --no-dependencies face_ recognition
+#pip install git+https://github.com/ageitgey/face_recognition_models
